@@ -31,6 +31,11 @@ return require('packer').startup(function(use)
 		  end
   }
 
+  -- Links with Prettier for formatting
+  use {
+      "stevearc/conform.nvim"
+  }
+
   use {
 	  'nvim-treesitter/nvim-treesitter',
 	  run = function()
@@ -53,6 +58,7 @@ return require('packer').startup(function(use)
 	  "mbbill/undotree"
   }
 
+  -- Git integation
   use {
 	  "tpope/vim-fugitive"
   }

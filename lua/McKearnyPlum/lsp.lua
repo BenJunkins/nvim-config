@@ -50,7 +50,9 @@ cmp.setup({
 --  LSP (lspconfig and mason)
 -- ===========================
 
-local on_attach = function(client, bufnr)
+local mason = require("mason")
+local mason_lspconfig = require("mason-lspconfig")
+local default_on_attach = function(client, bufnr)
   -- Enable completion triggered by characters
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -66,23 +68,47 @@ local on_attach = function(client, bufnr)
 end
 
 -- Get the capabilities from nvim-cmp
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local default_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Setup mason
-require('mason').setup()
+mason.setup()
 
 -- Setup mason-lspconfig to automatically setup servers
-require('mason-lspconfig').setup({
+mason_lspconfig.setup({
   ensure_installed = {
-    'lua_ls', -- Example: ensure lua_ls is installed
-    'pyright' -- Example: ensure pyright for Python is installed
+    'lua_ls',
+    'pyright',
+    'ts_ls',
+    'emmet_ls',
+    'cssls',
+    'tailwindcss',
+    'jsonls'
   },
   handlers = {
     function(server_name)
-      require('lspconfig')[server_name].setup({
-	on_attach = on_attach,
-	capabilities = capabilities
-      })
+        local opts = {
+            on_attach = default_on_attach,
+            capabilities = default_capabilities
+        }
+
+        local require_path = "McKearnyPlum.lsp_settings." .. server_name
+        local has_custom_opts, custom_opts = pcall(require, require_path)
+
+        if has_custom_opts then
+            if custom_opts.on_attach then
+                local specific_on_attach = custom_opts.on_attach
+                opts.on_attach = function (client, bufnr)
+                    specific_on_attach(client, bufnr)
+                    default_on_attach(client, bufnr)
+                end
+                custom_opts.on_attach = nil
+            end
+            opts = vim.tbl_deep_extend("force", opts, custom_opts)
+        end
+
+        vim.lsp.config(server_name, opts)
+        vim.lsp.enable(server_name)
+
     end
   }
 })

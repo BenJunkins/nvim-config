@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\Benja\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["conform.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\Benja\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\conform.nvim",
+    url = "https://github.com/stevearc/conform.nvim"
+  },
   ["gruvbox-material"] = {
     config = { "\27LJ\2\nä\1\0\0\3\0\n\0\0186\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\0\0=\1\6\0006\0\0\0009\0\a\0009\0\b\0'\2\t\0B\0\2\1K\0\1\0\21gruvbox-material\16colorscheme\bcmd,gruvbox_material_transparent_background\rmaterial gruvbox_material_foreground\thard gruvbox_material_background\6g\bvim\0" },
     loaded = true,
