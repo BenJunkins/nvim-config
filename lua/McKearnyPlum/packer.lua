@@ -15,9 +15,12 @@ return require("packer").startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 
-	-- Color
+	-- Color and Animation
 	use({
 		"sainnhe/gruvbox-material",
+	})
+	use({
+		"sphamba/smear-cursor.nvim",
 	})
 
 	-- Links with Prettier for formatting

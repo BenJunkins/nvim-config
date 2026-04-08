@@ -154,6 +154,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\Benja\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["smear-cursor.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\Benja\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\smear-cursor.nvim",
+    url = "https://github.com/sphamba/smear-cursor.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "C:\\Users\\Benja\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",
