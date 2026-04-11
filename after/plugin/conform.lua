@@ -19,6 +19,6 @@ conform.setup({
 	format_on_save = {
 		lsp_fallback = true, -- If Prettier isn't available, try the LSP (safety net)
 		async = false, -- false = blocks the save until format is done (safer)
-		timeout_ms = 500, -- Give up if formatting takes longer than 0.5 seconds
+		timeout_ms = 1000, -- Give up if formatting takes longer than 0.5 seconds
 	},
 })

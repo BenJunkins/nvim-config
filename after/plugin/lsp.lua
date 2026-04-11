@@ -15,7 +15,7 @@ cmp.setup({
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-j-k>"] = cmp.mapping.close(),
+		["<C-c>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept completion.
 		-- Use Tab to navigate through suggestions
 		["<Tab>"] = cmp.mapping(function(fallback)
@@ -65,6 +65,15 @@ local default_on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename Symbol" })
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Previous Diagnostic" })
 	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Next Diagnostic" })
+	vim.keymap.set("n", "<leader>cd", function()
+		vim.diagnostic.open_float({
+			focusable = false,
+			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+			border = "rounded",
+			source = "always", -- Optional: shows source (e.g., "lua_ls")
+			prefix = " ",
+		})
+	end, { buffer = bufnr, desc = "Read Diagnostic" })
 end
 
 -- Get the capabilities from nvim-cmp
@@ -106,7 +115,8 @@ mason_lspconfig.setup({
 				opts = vim.tbl_deep_extend("force", opts, custom_opts)
 			end
 
-			require("lspconfig")[server_name].setup(opts)
+			vim.lsp.config(server_name, opts)
+			vim.lsp.enable(server_name)
 		end,
 	},
 })
