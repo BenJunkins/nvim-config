@@ -73,7 +73,7 @@ local default_on_attach = function(client, bufnr)
 			source = "always", -- Optional: shows source (e.g., "lua_ls")
 			prefix = " ",
 		})
-	end, { buffer = bufnr, desc = "Read Diagnostic" })
+	end, { buffer = bufnr, desc = "Open diagnostic in floating window" })
 end
 
 -- Get the capabilities from nvim-cmp
