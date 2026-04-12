@@ -65,15 +65,6 @@ local default_on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename Symbol" })
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Previous Diagnostic" })
 	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Next Diagnostic" })
-	vim.keymap.set("n", "<leader>cd", function()
-		vim.diagnostic.open_float({
-			focusable = false,
-			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-			border = "rounded",
-			source = "always", -- Optional: shows source (e.g., "lua_ls")
-			prefix = " ",
-		})
-	end, { buffer = bufnr, desc = "Open diagnostic in floating window" })
 end
 
 -- Get the capabilities from nvim-cmp

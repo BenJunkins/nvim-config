@@ -31,6 +31,7 @@ vim.keymap.set("v", "<leader>d", '"_d', { desc = "Delete avoid register" })
 -- Quickfix window
 vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz", { desc = "Next in Quickfix" })
 vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz", { desc = "Prev in Quickfix" })
+vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Open diagnostic in floating window" })
 
 -- Terminal
 vim.keymap.set("n", "<leader>t", function()
