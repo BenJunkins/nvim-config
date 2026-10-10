@@ -40,3 +40,6 @@ vim.keymap.set("n", "<leader>t", function()
 	vim.cmd.startinsert() -- Immediately start typing
 end, { desc = "Opens terminal in new window" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+--FineCmdLine
+vim.keymap.set("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })

@@ -22,7 +22,7 @@ require("lazy").setup({
 	},
 
 	-- Color and Animation
-	{ "sainnhe/gruvbox-material" },
+	{ "rebelot/kanagawa.nvim" },
 	{
 		"sphamba/smear-cursor.nvim",
 		opts = {
@@ -62,18 +62,45 @@ require("lazy").setup({
 	{ "tpope/vim-fugitive" },
 	{ "windwp/nvim-autopairs" },
 
-	-- LSP and Autocompletion Stack
+	-- LSP
 	{
-		"neovim/nvim-lspconfig",
+		"mason-org/mason.nvim",
+		opts = {},
+	},
+	{ "neovim/nvim-lspconfig" },
+	{
+		"mason-org/mason-lspconfig.nvim",
 		dependencies = {
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			"hrsh7th/nvim-cmp",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
+			"mason-org/mason.nvim",
+			"neovim/nvim-lspconfig",
 		},
+		opts = {},
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		dependecies = { "mason-org/mason/nvim" },
+		opt = {},
+	},
+
+	-- Autocompletion
+	{ "rafamadriz/friendly-snippets" },
+	{
+		"saghen/blink.cmp",
+		dependencies = { "rafamadriz/friendly-snippets" },
+		version = "1.*",
+		---@module 'blink.cmp'
+		---@type blink.cmp.Confg
+		opts = {
+			-- See :h blink-cmp-config-keymap for defining keymap
+			keymap = { preset = "super-tab" },
+		},
+		opts_extend = { "sources.default" },
+	},
+
+	-- Command Line
+	{ "MunifTanjim/nui.nvim" },
+	{
+		"VonHeikemen/fine-cmdline.nvim",
+		dependencies = { "MunifTanjim/nui.nvim" },
 	},
 })

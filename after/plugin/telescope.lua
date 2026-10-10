@@ -5,6 +5,6 @@ vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Ts find git files
 
 -- Grep
 vim.keymap.set("n", "<leader>gl", builtin.live_grep, { desc = "Live Grep" })
-vim.keymap.set("n", "<leader>gs", function()
+vim.keymap.set("n", "<leader>gf", function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end, { desc = "Grep string" })

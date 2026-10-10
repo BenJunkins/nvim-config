@@ -1,63 +1,11 @@
--- ===========================
---  Autocompletion (nvim-cmp)
--- ===========================
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
-	-- Key mappings for completion
-	mapping = cmp.mapping.preset.insert({
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-c>"] = cmp.mapping.close(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept completion.
-		-- Use Tab to navigate through suggestions
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	}),
-	-- Sources for completion
-	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		{ name = "buffer" },
-		{ name = "path" },
-	}),
-})
-
--- ===========================
---  LSP (lspconfig and mason)
--- ===========================
-
-local mason = require("mason")
-local mason_lspconfig = require("mason-lspconfig")
+require("mason").setup()
+require("mason-lspconfig").setup()
+--[[
 local default_on_attach = function(client, bufnr)
 	-- Enable completion triggered by characters
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	-- Set keymaps for LSP functionality
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "LSP Hover" })
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to Definition" })
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "Go to References" })
 	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Go to Implementation" })
@@ -70,20 +18,8 @@ end
 -- Get the capabilities from nvim-cmp
 local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- Setup mason
-mason.setup()
-
 -- Setup mason-lspconfig to automatically setup servers
 mason_lspconfig.setup({
-	ensure_installed = {
-		"lua_ls",
-		"pyright",
-		"ts_ls",
-		"emmet_ls",
-		"cssls",
-		"tailwindcss",
-		"jsonls",
-	},
 	handlers = {
 		function(server_name)
 			local opts = {
@@ -107,11 +43,10 @@ mason_lspconfig.setup({
 			end
 
 			vim.lsp.config(server_name, opts)
-			vim.lsp.enable(server_name)
 		end,
 	},
 })
-
+--]]
 -- ===========================
 -- Making vim. commands Global
 -- ===========================
