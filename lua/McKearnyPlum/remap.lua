@@ -16,7 +16,7 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "Center cursor in next search" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Center cursor in prev search" })
 
 -- Putting
-vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Put without overwriting reg" })
+vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Put without overwriting reg" })
 vim.keymap.set("n", "<leader>p", '"0p', { desc = "Put last yank" })
 
 -- Yanking
@@ -26,7 +26,7 @@ vim.keymap.set("x", "<leader>y", '"+y', { desc = "Yank highlight into clipboard"
 
 -- Deleting
 vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete avoid register" })
-vim.keymap.set("v", "<leader>d", '"_d', { desc = "Delete avoid register" })
+vim.keymap.set("x", "<leader>d", '"_d', { desc = "Delete avoid register" })
 
 -- Quickfix window
 vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz", { desc = "Next in Quickfix" })

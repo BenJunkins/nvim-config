@@ -65,7 +65,6 @@ require("lazy").setup({
 	-- LSP
 	{
 		"mason-org/mason.nvim",
-		opts = {},
 	},
 	{ "neovim/nvim-lspconfig" },
 	{
@@ -74,12 +73,10 @@ require("lazy").setup({
 			"mason-org/mason.nvim",
 			"neovim/nvim-lspconfig",
 		},
-		opts = {},
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		dependecies = { "mason-org/mason/nvim" },
-		opt = {},
+		dependencies = { "mason-org/mason.nvim" },
 	},
 
 	-- Autocompletion
@@ -103,4 +100,6 @@ require("lazy").setup({
 		"VonHeikemen/fine-cmdline.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
 	},
+}, {
+	rocks = { enabled = false },
 })

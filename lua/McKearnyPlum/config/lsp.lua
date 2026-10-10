@@ -17,6 +17,7 @@ require("mason-tool-installer").setup({
 		"black",
 		"pyright",
 		"isort",
+		"tree-sitter-cli",
 	},
 })
 
@@ -71,8 +72,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "<leader>gr", vim.lsp.buf.references, "References")
 		map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
 		map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
-		map("n", "<leader>f", function()
-			vim.lsp.buf.format({ async = true })
-		end, "Format buffer")
 	end,
 })

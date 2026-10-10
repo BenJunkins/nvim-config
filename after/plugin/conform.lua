@@ -16,9 +16,14 @@ conform.setup({
 		python = { "black" },
 	},
 
+	-- Blocks the save until formatting is done
 	format_on_save = {
-		lsp_fallback = true, -- If Prettier isn't available, try the LSP (safety net)
-		async = false, -- false = blocks the save until format is done (safer)
-		timeout_ms = 1000, -- Give up if formatting takes longer than 0.5 seconds
+		lsp_format = "fallback", -- If no formatter is listed for the filetype, try the LSP (safety net)
+		timeout_ms = 1000, -- Give up if formatting takes longer than 1 second
 	},
 })
+
+-- Manual format: same formatters as format-on-save, LSP only if none is configured
+vim.keymap.set("n", "<leader>f", function()
+	conform.format({ async = true, lsp_format = "fallback" })
+end, { desc = "Format buffer" })
